@@ -1,4 +1,6 @@
 from Item import Candy
+from candy_enum import ToffeeVariety, CandyCaneVariety
+from invalid_data_error import InvalidDataError
 
 
 class PumpkinCaramelToffee(Candy):
@@ -8,7 +10,7 @@ class PumpkinCaramelToffee(Candy):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, variety, has_nuts= True, has_lactose=True):
+                 product_id: str, variety, has_nuts=True, has_lactose=True):
         """
         Initialize this instance of Pumpkin Caramel Toffee.
 
@@ -21,15 +23,41 @@ class PumpkinCaramelToffee(Candy):
         """
 
         super().__init__(name, description, product_id, has_nuts, has_lactose)
-        self._variety = variety
+        self.variety = variety
 
-    def get_variety(self):
+    @property
+    def variety(self):
         """
         Return the variety of this Pumpkin Caramel Toffee.
 
         :return: a string representing variety of Pumpkin Caramel Toffee
         """
         return self._variety
+
+    @variety.setter
+    def variety(self, variety_type: str):
+        """
+        Set the variety of this instance of Pumpkin Caramel Toffee.
+
+        :param variety_type: string
+        :precondition variety_type: variety type must be either "Sea Salt" or "Regular"
+        """
+
+        if variety_type.lower() not in (ToffeeVariety.salt.value, ToffeeVariety.reg.value):
+            raise InvalidDataError
+
+        self._variety = variety_type
+
+    def __str__(self):
+        """
+        Generate a string representation of this instance of Pumpkin Caramel Toffee.
+
+        :return: a string representing this instance of Pumpkin Caramel Toffee
+        """
+
+        return "Item Candy, Product ID: {}, Name: {}, May Contain Nuts," \
+               " Contains Lactose, Variety: {}".format(self.get_product_id(),
+                                                       self.get_name(), self.variety)
 
 
 class CandyCane(Candy):
@@ -50,9 +78,10 @@ class CandyCane(Candy):
         :param has_lactose: a boolean False by default
         """
         super().__init__(name, description, product_id, has_nuts, has_lactose)
-        self._stripes = stripes
+        self.stripes = stripes
 
-    def get_stripes(self):
+    @property
+    def stripes(self):
         """
         Return the stripe color of this instance of CandyCane.
 
@@ -60,11 +89,37 @@ class CandyCane(Candy):
         """
         return self._stripes
 
+    @stripes.setter
+    def stripes(self, stripe_type):
+        """
+        Set the stipe type of this instance of Candy Cane.
+
+        :param stripe_type: a string
+        :precondition: must be either "Red" or "Green"
+        """
+        if stripe_type.lower() not in (CandyCaneVariety.red.value,
+                                       CandyCaneVariety.green.value):
+            raise InvalidDataError
+
+        self._stripes = stripe_type
+
+    def __str__(self):
+        """
+        Generate a string representation of this instance of CandyCane.
+
+        :return: a string representing this instance of Candy Cane
+        """
+
+        return "Item Candy, Product ID: {}, Name: {}, Does Not Contain Nuts," \
+               " Does Not Contain Lactose, Stripes: {}".format(self.get_product_id(),
+                                                               self.get_name(), self.stripes)
+
 
 class CremeEgg(Candy):
     """
     Represent a CremeEgg, which extends the abstract class of Candy.
     """
+
     def __init__(self, name: str, description: str,
                  product_id: str, pack_size: int, has_nuts=True, has_lactose=True):
         """
@@ -79,9 +134,10 @@ class CremeEgg(Candy):
         """
 
         super().__init__(name, description, product_id, has_nuts, has_lactose)
-        self._pack_size = pack_size
+        self.pack_size = pack_size
 
-    def get_pack_size(self):
+    @property
+    def pack_size(self):
         """
         Return the pack size of this instance of CremeEgg.
 
@@ -89,7 +145,26 @@ class CremeEgg(Candy):
         """
         return self._pack_size
 
+    @pack_size.setter
+    def pack_size(self, num_eggs: int):
+        """
+        Set the pack size of this instance of Candy Cane.
 
+        :param num_eggs: an int
+        :precondition num_eggs: must be an int value greater than zero
+        """
+        if num_eggs < 0:
+            raise InvalidDataError
 
+        self._pack_size = num_eggs
 
+    def __str__(self):
+        """
+        Generate a string representation of this instance of CremeEgg.
 
+        :return: a string representing this instance of Candy Cane
+        """
+
+        return "Item Candy, Product ID: {}, Name: {}, Contain Nuts," \
+               "Contains Lactose, Pack Size: {}".format(self.get_product_id(),
+                                                        self.get_name(), self.get_pack_size())
