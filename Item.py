@@ -138,7 +138,6 @@ class StuffedAnimals(ABC, Item):
 class Candy(ABC, Item):
     """
     An abstract class which extends Item and represents Candy.
-
     """
 
     def __init__(self, name: str, description: str,
