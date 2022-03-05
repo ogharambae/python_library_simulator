@@ -86,6 +86,7 @@ class Toys(ABC, Item):
 class StuffedAnimals(ABC, Item):
     """
     An abstract class which extends Item and represents a Stuffed Animal.
+
     """
 
     # we may want to change stuffing, size and fabric to be an enum,
