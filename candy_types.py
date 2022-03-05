@@ -167,4 +167,4 @@ class CremeEgg(Candy):
 
         return "Item Candy, Product ID: {}, Name: {}, Contain Nuts," \
                "Contains Lactose, Pack Size: {}".format(self.get_product_id(),
-                                                        self.get_name(), self.get_pack_size())
+                                                        self.get_name(), self.pack_size)
