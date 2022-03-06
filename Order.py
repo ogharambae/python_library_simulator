@@ -107,3 +107,6 @@ class Order:
         :return: a string
         """
         return self._warning_message
+
+    def __str__(self):
+        pass
