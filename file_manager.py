@@ -6,8 +6,11 @@ class FileManager:
     Represent the File Manager which involves in file io operations
     """
 
-    @staticmethod
-    def write_report(filename):
+    def __init__(self, filename):
+        self._file_manager = self.write_report(filename)
+
+    @classmethod
+    def write_report(cls, filename) -> list:
         """
         Read Excel file and process data to list of dictionary.
         """
