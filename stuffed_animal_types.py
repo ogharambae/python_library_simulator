@@ -36,6 +36,17 @@ class DancingSkeleton(StuffedAnimals):
         """
         return self._glows_in_dark
 
+    def __str__(self):
+        """
+        Generate a string representation of this instance of Dancing Skeleton.
+
+        :return: a string representation of DancingSkeleton
+        """
+        return "Item StuffedAnimal, Product ID: {}, Name: {}, Glows in Dark {}," \
+               " Size {}, Stuffing: {}, Fabric: {}".format(self.get_product_id(),
+                                                           self.get_name(), self.get_glows_in_dark(),
+                                                           self.size, self.stuffing_type, self.fabric)
+
 
 class Reindeer(StuffedAnimals):
     """
@@ -67,6 +78,17 @@ class Reindeer(StuffedAnimals):
         :return: a boolean, true if nose glows, else false
         """
         return self._nose_glows
+
+    def __str__(self):
+        """
+        Generate a string representation of this instance of Reindeer.
+
+        :return: a string representation of DancingSkeleton
+        """
+        return "Item StuffedAnimal, Product ID: {}, Name: {}, Nose Glows: {}," \
+               " Size {}, Stuffing: {}, Fabric: {}".format(self.get_product_id(),
+                                                           self.get_name(), self.get_nose_glow(),
+                                                           self.size, self.stuffing_type, self.fabric)
 
 
 class EasterBunny(StuffedAnimals):
@@ -114,3 +136,14 @@ class EasterBunny(StuffedAnimals):
             raise InvalidDataError
 
         self._color = color
+
+    def __str__(self):
+        """
+        Generate a string representation of this instance of Easter Bunny.
+
+        :return: a string representation of DancingSkeleton
+        """
+        return "Item StuffedAnimal, Product ID: {}, Name: {}, Color: {}," \
+               " Size {}, Stuffing: {}, Fabric: {}".format(self.get_product_id(),
+                                                           self.get_name(), self.color,
+                                                           self.size, self.stuffing_type, self.fabric)
