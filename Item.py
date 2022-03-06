@@ -47,7 +47,7 @@ class Item(ABC):
         return self._product_ID
 
 
-class Toys(ABC, Item):
+class Toys(Item, ABC):
     """
     An abstract class which extends Item and represents a Toy
     """
@@ -86,7 +86,7 @@ class Toys(ABC, Item):
         return self._min_age
 
 
-class StuffedAnimals(ABC, Item):
+class StuffedAnimals(Item, ABC):
     """
     An abstract class which extends Item and represents a Stuffed Animal.
     """
@@ -177,7 +177,7 @@ class StuffedAnimals(ABC, Item):
         self._fabric = fabric_type
 
 
-class Candy(ABC, Item):
+class Candy(Item, ABC):
     """
     An abstract class which extends Item and represents Candy.
     """
