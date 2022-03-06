@@ -1,6 +1,7 @@
 from Item import StuffedAnimals
 from stuffed_animal_enum import StuffingType, FabricType, EasterBunnyColors
 from invalid_data_error import InvalidDataError
+from ui_message import UIMessage
 
 
 class DancingSkeleton(StuffedAnimals):
@@ -133,7 +134,7 @@ class EasterBunny(StuffedAnimals):
         """
         if color.lower() not in (EasterBunnyColors.white.value, EasterBunnyColors.grey.value,
                                  EasterBunnyColors.pink.value, EasterBunnyColors.blue.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.stuffed_animal_error())
 
         self._color = color
 
