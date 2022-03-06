@@ -3,7 +3,7 @@ from invalid_data_error import InvalidDataError
 
 class Order:
     """
-    Represent the Order object which contains the detail of an order
+    Represent the Order object which contains the detail of an order.
     """
 
     class Order:
