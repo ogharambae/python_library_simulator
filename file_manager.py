@@ -10,18 +10,18 @@ class FileManager:
     #     self._file_manager = self.write_report(filename)
 
     @classmethod
-    def write_report(cls, filename) -> list:
+    def read_file(cls, filename) -> list:
         """
         Read Excel file and process data to list of dictionary.
         """
 
         list_of_order = []
 
-        df = pd.read_excel(filename, index_col=0, na_values=['NA']).to_dict('records')
+        df = pd.read_excel(filename, index_col=0)
+        df = df.applymap(lambda s: s.lower() if type(s) == str else s).to_dict('records')
 
         for column in df:
             list_of_order.append(column)
-
         return list_of_order
 
 

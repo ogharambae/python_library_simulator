@@ -13,11 +13,11 @@ class HalloweenItemFactory:
     @staticmethod
     def get_item_factory(item_type):
         match item_type:
-            case ItemEnum.CANDY:
+            case ItemEnum.CANDY.value:
                 return PumpkinCaramelToffee
-            case ItemEnum.ANIMAL:
+            case ItemEnum.ANIMAL.value:
                 return DancingSkeleton
-            case ItemEnum.TOY:
+            case ItemEnum.TOY.value:
                 return RCSpider
             case _:
                 raise InvalidDataError("No matching item type found (%s)" % item_type)
@@ -31,11 +31,11 @@ class ChristmasItemFactory:
     @staticmethod
     def get_item_factory(item_type):
         match item_type:
-            case ItemEnum.CANDY:
+            case ItemEnum.CANDY.value:
                 return CandyCane
-            case ItemEnum.ANIMAL:
+            case ItemEnum.ANIMAL.value:
                 return Reindeer
-            case ItemEnum.TOY:
+            case ItemEnum.TOY.value:
                 return SantaWorkshop
             case _:
                 raise InvalidDataError("No matching item type found (%s)" % item_type)
@@ -48,12 +48,12 @@ class EasterItemFactory:
 
     @staticmethod
     def get_item_factory(item_type):
-        match item_type:
+        match item_type.value:
             case ItemEnum.CANDY:
                 return CremeEgg
-            case ItemEnum.ANIMAL:
+            case ItemEnum.ANIMAL.value:
                 return EasterBunny
-            case ItemEnum.TOY:
+            case ItemEnum.TOY.value:
                 return RobotBunny
             case _:
                 raise InvalidDataError("No matching item type found (%s)" % item_type)

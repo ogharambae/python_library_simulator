@@ -1,4 +1,5 @@
 from Order import Order
+from factory_mapping import FactoryMapping
 from file_manager import FileManager
 
 
@@ -12,7 +13,7 @@ class OrderProcessor:
 
     @classmethod
     def import_data(cls, filename):
-        data = FileManager.write_report(filename)
+        data = FileManager.read_file(filename)
         return data
 
     def get_data(self):
@@ -23,10 +24,22 @@ class OrderProcessor:
         order_list = []
 
         for order_data in data:
-            new_order = Order(order_data)
+            item = order_data['item']
+            holiday = order_data["holiday"]
+            order_data["item_factory"] = FactoryMapping.get_item_factory(holiday, item)
+            new_order = Order(**order_data)
             order_list.append(new_order)
+
+        print(order_list)
         return order_list
 
 
+def main():
+    filename = "./orders.xlsx"
+    my_order = OrderProcessor(filename)
+    my_order.create_order()
 
+
+if __name__ == '__main__':
+    main()
 

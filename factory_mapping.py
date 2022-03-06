@@ -20,11 +20,11 @@ class FactoryMapping:
     @staticmethod
     def get_item_factory(holiday, item_type):
         match holiday:
-            case Holiday.HALLOWEEN:
+            case Holiday.HALLOWEEN.value:
                 return HalloweenItemFactory.get_item_factory(item_type)
-            case Holiday.CHRISTMAS:
+            case Holiday.CHRISTMAS.value:
                 return ChristmasItemFactory.get_item_factory(item_type)
-            case Holiday.EASTER:
+            case Holiday.EASTER.value:
                 return EasterItemFactory.get_item_factory(item_type)
             case _:
                 raise InvalidDataError("No matching holiday found (%s)" % holiday)
