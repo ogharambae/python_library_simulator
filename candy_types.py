@@ -1,6 +1,7 @@
 from Item import Candy
 from candy_enum import ToffeeVariety, CandyCaneVariety
 from invalid_data_error import InvalidDataError
+from ui_message import UIMessage
 
 
 class PumpkinCaramelToffee(Candy):
@@ -44,7 +45,7 @@ class PumpkinCaramelToffee(Candy):
         """
 
         if variety_type.lower() not in (ToffeeVariety.salt.value, ToffeeVariety.reg.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.toffee_error_message())
 
         self._variety = variety_type
 
@@ -99,7 +100,7 @@ class CandyCane(Candy):
         """
         if stripe_type.lower() not in (CandyCaneVariety.red.value,
                                        CandyCaneVariety.green.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.candy_cane_error_message())
 
         self._stripes = stripe_type
 
@@ -154,7 +155,7 @@ class CremeEgg(Candy):
         :precondition num_eggs: must be an int value greater than zero
         """
         if num_eggs < 0:
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.creme_eggs_error_message())
 
         self._pack_size = num_eggs
 

@@ -1,6 +1,7 @@
 from abc import ABC
 from invalid_data_error import InvalidDataError
 from stuffed_animal_enum import StuffingType, FabricType, SizeOptions
+from ui_message import UIMessage
 
 
 class Item(ABC):
@@ -127,7 +128,7 @@ class StuffedAnimals(ABC, Item):
         """
 
         if stuffing.lower not in (StuffingType.wool.value, StuffingType.poly.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.stuffing_type_error_message())
 
         self._stuffing_type = stuffing
 
@@ -149,7 +150,7 @@ class StuffedAnimals(ABC, Item):
         :precondition size: must be either "small", "medium", or "large"
         """
         if size.lower() not in (SizeOptions.sm.value, SizeOptions.med.value, SizeOptions.lrg.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.size_error_message())
 
         self._size = size
 
@@ -172,7 +173,7 @@ class StuffedAnimals(ABC, Item):
         """
         if fabric_type.lower() not in (FabricType.linen.value,
                                        FabricType.cotton.value, FabricType.acrylic.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.fabric_error_message())
         self._fabric = fabric_type
 
 

@@ -1,6 +1,7 @@
 from Item import Toys
 from toys_enum import SpiderType, RobotBunnyColor
 from invalid_data_error import InvalidDataError
+from ui_message import UIMessage
 
 
 class SantaWorkshop(Toys):
@@ -128,7 +129,7 @@ class RCSpider(Toys):
         :precondition spider_type: must be either a "Tarantula" or a "Wolf Spider"
         """
         if spider_type.lower() not in (SpiderType.tarantula.value, SpiderType.wolf.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.spider_type_error_message())
 
         self._spider_type = spider_type
 
@@ -199,7 +200,7 @@ class RobotBunny(Toys):
         """
         if color.lower() not in (RobotBunnyColor.orange.value, RobotBunnyColor.blue.value,
                                  RobotBunnyColor.pink.value):
-            raise InvalidDataError
+            raise InvalidDataError(UIMessage.robot_bunny_color_error_message())
         self._color = color
 
     def __str__(self):
