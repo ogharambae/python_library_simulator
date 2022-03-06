@@ -43,6 +43,20 @@ class SantaWorkshop(Toys):
         """
         return self._num_rooms
 
+    def __str__(self):
+        """
+        Generate a String representation of this instance of Santa's Workshop.
+
+        :return: a string
+        """
+
+        return "Item Toy, Product ID: {}, Name: {}, Recommended Age: {}," \
+               "Dimensions: {}, Number of Rooms: {}, No Batteries Required ".format(self.get_product_id(),
+                                                                                    self.get_name(),
+                                                                                    self.get_min_age(),
+                                                                                    self.get_dimensions(),
+                                                                                    self.get_num_rooms())
+
 
 class RCSpider(Toys):
     """
@@ -118,6 +132,21 @@ class RCSpider(Toys):
 
         self._spider_type = spider_type
 
+    def __str__(self):
+        """
+        Generate a String representation of this instance of RC Spider.
+
+        :return: a string
+        """
+
+        return "Item Toy, Product ID: {}, Name: {}, Recommended Age: {}," \
+               " Speed: {}, Jump Height {}, Glows in Dark: {}, " \
+               "Spider Type: {}".format(self.get_product_id(), self.get_name(),
+                                        self.get_min_age(), self.get_speed(),
+                                        self.get_jump_height(),
+                                        self.get_glows_in_dark(),
+                                        self.spider)
+
 
 class RobotBunny(Toys):
     """
@@ -172,3 +201,15 @@ class RobotBunny(Toys):
                                  RobotBunnyColor.pink.value):
             raise InvalidDataError
         self._color = color
+
+    def __str__(self):
+        """
+        Generate a String representation of this instance of Robot Bunny.
+
+        :return: a string
+        """
+
+        return "Item Toy, Product ID: {}, Name: {}, Recommended Age: {}," \
+               "Num of Sound Effects: {}, Color {}".format(self.get_product_id(), self.get_name(),
+                                                           self.get_min_age(),
+                                                           self.get_num_sound_effects(), self.color)
