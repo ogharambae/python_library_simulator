@@ -44,7 +44,7 @@ class PumpkinCaramelToffee(Candy):
         :precondition variety_type: variety type must be either "Sea Salt" or "Regular"
         """
 
-        if variety_type.lower() not in (ToffeeVariety.salt.value, ToffeeVariety.reg.value):
+        if variety_type.lower() not in (ToffeeVariety.SALT.value, ToffeeVariety.REG.value):
             raise InvalidDataError(UIMessage.toffee_error_message())
 
         self._variety = variety_type
@@ -98,8 +98,8 @@ class CandyCane(Candy):
         :param stripe_type: a string
         :precondition: must be either "Red" or "Green"
         """
-        if stripe_type.lower() not in (CandyCaneVariety.red.value,
-                                       CandyCaneVariety.green.value):
+        if stripe_type.lower() not in (CandyCaneVariety.RED.value,
+                                       CandyCaneVariety.GREEN.value):
             raise InvalidDataError(UIMessage.candy_cane_error_message())
 
         self._stripes = stripe_type

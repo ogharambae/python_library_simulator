@@ -128,7 +128,7 @@ class RCSpider(Toys):
         :param spider_type: a string
         :precondition spider_type: must be either a "Tarantula" or a "Wolf Spider"
         """
-        if spider_type.lower() not in (SpiderType.tarantula.value, SpiderType.wolf.value):
+        if spider_type.lower() not in (SpiderType.TARANTULA.value, SpiderType.WOLF.value):
             raise InvalidDataError(UIMessage.spider_type_error_message())
 
         self._spider_type = spider_type
@@ -198,8 +198,8 @@ class RobotBunny(Toys):
         :param color: a string
         :precondition color: must be either "Orange", "Blue", or "Pink"
         """
-        if color.lower() not in (RobotBunnyColor.orange.value, RobotBunnyColor.blue.value,
-                                 RobotBunnyColor.pink.value):
+        if color.lower() not in (RobotBunnyColor.ORANGE.value, RobotBunnyColor.BLUE.value,
+                                 RobotBunnyColor.PINK.value):
             raise InvalidDataError(UIMessage.robot_bunny_color_error_message())
         self._color = color
 

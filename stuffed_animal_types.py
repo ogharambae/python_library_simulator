@@ -13,7 +13,7 @@ class DancingSkeleton(StuffedAnimals):
     # Unsure if Dancing Skeleton glows in the dark by default!
     def __init__(self, name: str, description: str,
                  product_id: str, size: str, glows_in_dark: bool,
-                 stuffing=StuffingType.poly.value, fabric=FabricType.acrylic.value):
+                 stuffing=StuffingType.POLY.value, fabric=FabricType.ACRYLIC.value):
         """
         Initialize this instance of Dancing Skeleton.
 
@@ -56,7 +56,7 @@ class Reindeer(StuffedAnimals):
 
     def __init__(self, name: str, description: str,
                  product_id: str, size: str, nose_glows: bool,
-                 stuffing=StuffingType.wool.value, fabric=FabricType.cotton.value):
+                 stuffing=StuffingType.WOOL.value, fabric=FabricType.COTTON.value):
         """
         Initialize this instance of Reindeer.
 
@@ -99,7 +99,7 @@ class EasterBunny(StuffedAnimals):
 
     def __init__(self, name: str, description: str,
                  product_id: str, size: str, color: str,
-                 stuffing=StuffingType.poly.value, fabric=FabricType.linen.value):
+                 stuffing=StuffingType.POLY.value, fabric=FabricType.LINEN.value):
         """
         Initialize this instance of EasterBunny.
 
@@ -132,8 +132,8 @@ class EasterBunny(StuffedAnimals):
         :param color: a string
         :precondition color: must be either "white", "grey", "pink" or "blue"
         """
-        if color.lower() not in (EasterBunnyColors.white.value, EasterBunnyColors.grey.value,
-                                 EasterBunnyColors.pink.value, EasterBunnyColors.blue.value):
+        if color.lower() not in (EasterBunnyColors.WHITE.value, EasterBunnyColors.GREY.value,
+                                 EasterBunnyColors.PINK.value, EasterBunnyColors.BLUE.value):
             raise InvalidDataError(UIMessage.stuffed_animal_error())
 
         self._color = color
