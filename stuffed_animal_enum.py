@@ -29,6 +29,7 @@ class SizeOptions(Enum):
     med = "medium"
     lrg = "large"
 
+
 class EasterBunnyColors(Enum):
     """
     An enum class representing the possible colors
