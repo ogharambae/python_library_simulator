@@ -1,5 +1,5 @@
 from Item import Candy
-from candy_enum import ToffeeVariety, CandyCaneVariety
+from item_enum import ToffeeVariety, CandyCaneVariety
 from invalid_data_error import InvalidDataError
 from ui_message import UIMessage
 

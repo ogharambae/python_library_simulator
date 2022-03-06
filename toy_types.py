@@ -1,5 +1,5 @@
 from Item import Toys
-from toys_enum import SpiderType, RobotBunnyColor
+from item_enum import SpiderType, RobotBunnyColor
 from invalid_data_error import InvalidDataError
 from ui_message import UIMessage
 

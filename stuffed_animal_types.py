@@ -1,5 +1,5 @@
 from Item import StuffedAnimals
-from stuffed_animal_enum import StuffingType, FabricType, EasterBunnyColors
+from item_enum import StuffingType, FabricType, EasterBunnyColors
 from invalid_data_error import InvalidDataError
 from ui_message import UIMessage
 

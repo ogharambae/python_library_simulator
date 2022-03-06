@@ -1,6 +1,6 @@
 from abc import ABC
 from invalid_data_error import InvalidDataError
-from stuffed_animal_enum import StuffingType, FabricType, SizeOptions
+from item_enum import StuffingType, FabricType, SizeOptions
 from ui_message import UIMessage
 
 
