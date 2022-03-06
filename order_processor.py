@@ -9,17 +9,33 @@ class OrderProcessor:
     """
 
     def __init__(self, filename):
+        """
+        Instantiate an object to process the order
+        """
         self._data = self.import_data(filename)
 
     @classmethod
     def import_data(cls, filename):
+        """
+        Import the data from the FileManager class.
+
+        :return: data containing the order information
+        """
         data = FileManager.read_file(filename)
         return data
 
     def get_data(self):
+        """
+        Return the data.
+        :return: data
+        """
         return self._data
 
-    def create_order(self):
+    def create_order(self) -> list:
+        """
+        Create Order objects with information through data.
+        :return: the list of Order objects
+        """
         data = self.get_data()
         order_list = []
 
@@ -30,7 +46,6 @@ class OrderProcessor:
             new_order = Order(**order_data)
             order_list.append(new_order)
 
-        print(order_list)
         return order_list
 
 
