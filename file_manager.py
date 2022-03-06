@@ -9,7 +9,7 @@ class FileManager:
     @staticmethod
     def write_report():
         """
-        Read Excel file and process data to list of dictonary
+        Read Excel file and process data to list of dictionary.
         """
 
         list_of_order = []
