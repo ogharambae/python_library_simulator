@@ -39,3 +39,7 @@ class UIMessage:
     @staticmethod
     def fabric_error_message():
         return "Fabric type must be either Linen, Cotton or Acrylic"
+
+    @staticmethod
+    def order_type_message():
+        return "Item Type Must be either Toy, Candy or Stuffed Animal"
