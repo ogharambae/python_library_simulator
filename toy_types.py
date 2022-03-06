@@ -1,4 +1,6 @@
 from Item import Toys
+from toys_enum import SpiderType, RobotBunnyColor
+from invalid_data_error import InvalidDataError
 
 
 class SantaWorkshop(Toys):
@@ -47,7 +49,6 @@ class RCSpider(Toys):
     Represent a remote control spider, which extends the abstract class Toys.
     """
 
-    ## MAY BE ANOTHER PLACE WHERE AN ENUM MAKES SENSE FOR SPIDER TYPE
     def __init__(self, name: str, description: str,
                  product_id: str, min_age: int, speed, jump_height, glows_in_dark,
                  spider_type, has_battery=True):
@@ -69,7 +70,7 @@ class RCSpider(Toys):
         self._speed = speed
         self._jump_height = jump_height
         self._glows = glows_in_dark
-        self._spider_type = spider_type
+        self.spider = spider_type
 
     def get_speed(self):
         """
@@ -95,7 +96,8 @@ class RCSpider(Toys):
         """
         return self._glows
 
-    def spider_type(self):
+    @property
+    def spider(self):
         """
         Return the spider type of this RC Spider.
 
@@ -103,12 +105,25 @@ class RCSpider(Toys):
         """
         return self._spider_type
 
+    @spider.setter
+    def spider(self, spider_type: str):
+        """
+        Set the type of spider of this RC Spider.
+
+        :param spider_type: a string
+        :precondition spider_type: must be either a "Tarantula" or a "Wolf Spider"
+        """
+        if spider_type.lower() not in (SpiderType.tarantula.value, SpiderType.wolf.value):
+            raise InvalidDataError
+
+        self._spider_type = spider_type
+
 
 class RobotBunny(Toys):
     """
     Represent a Robot Bunny, which extends the abstract class Toys.
     """
-    ## MAY BE ANOTHER PLACE WHERE AN ENUM MAKES SENSE FOR color (orange, blue or pink)
+
     def __init__(self, name: str, description: str,
                  product_id: str, min_age: int, num_sound_effects: int,
                  color, has_battery=True):
@@ -136,10 +151,24 @@ class RobotBunny(Toys):
         """
         return self._num_sound_effects
 
-    def get_color(self):
+    @property
+    def color(self):
         """
         Return the color of this instance of Robot Bunny.
 
         :return: a string
         """
         return self._color
+
+    @color.setter
+    def color(self, color: str):
+        """
+        Set the color of this instance of RobotBunny.
+
+        :param color: a string
+        :precondition color: must be either "Orange", "Blue", or "Pink"
+        """
+        if color.lower() not in (RobotBunnyColor.orange.value, RobotBunnyColor.blue.value,
+                                 RobotBunnyColor.pink.value):
+            raise InvalidDataError
+        self._color = color
