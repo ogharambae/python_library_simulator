@@ -1,4 +1,6 @@
 from abc import ABC
+from invalid_data_error import InvalidDataError
+from stuffed_animal_enum import StuffingType, FabricType, SizeOptions
 
 
 class Item(ABC):
@@ -86,12 +88,7 @@ class Toys(ABC, Item):
 class StuffedAnimals(ABC, Item):
     """
     An abstract class which extends Item and represents a Stuffed Animal.
-
     """
-
-    # we may want to change stuffing, size and fabric to be an enum,
-    # as options for stuffing (poly, fiberfill, wool), size (small, medium, large),
-    # and fabric (linen, cotton or acrylic) are all limited!
 
     def __init__(self, name: str, description: str,
                  product_id: str, stuffing: str, size: str, fabric: str):
@@ -107,11 +104,12 @@ class StuffedAnimals(ABC, Item):
         """
 
         super().__init__(name, description, product_id)
-        self._stuffing_type = stuffing
-        self._size = size
-        self._fabric = fabric
+        self.stuffing_type = stuffing
+        self.size = size
+        self.fabric = fabric
 
-    def get_stuffing_type(self):
+    @property
+    def stuffing_type(self):
         """
         Return the stuffing type for this instance of Stuffed Animal.
 
@@ -119,7 +117,22 @@ class StuffedAnimals(ABC, Item):
         """
         return self._stuffing_type
 
-    def get_size(self):
+    @stuffing_type.setter
+    def stuffing_type(self, stuffing: str):
+        """
+        Set the stuffing type for this instance of Stuffed Animal.
+
+        :param stuffing: a string
+        :precondition stuffing: must be either "Polyester FiberFill" or "Wool"
+        """
+
+        if stuffing.lower not in (StuffingType.wool.value, StuffingType.poly.value):
+            raise InvalidDataError
+
+        self._stuffing_type = stuffing
+
+    @property
+    def size(self):
         """
         Return the size of this instance of Stuffed Animal.
 
@@ -127,13 +140,40 @@ class StuffedAnimals(ABC, Item):
         """
         return self._size
 
-    def get_fabric(self):
+    @size.setter
+    def size(self, size):
+        """
+        Set the size for this instance of Stuffed Animal.
+
+        :param size: a string
+        :precondition size: must be either "small", "medium", or "large"
+        """
+        if size.lower() not in (SizeOptions.sm.value, SizeOptions.med.value, SizeOptions.lrg.value):
+            raise InvalidDataError
+
+        self._size = size
+
+    @property
+    def fabric(self):
         """
         Return the fabric of this instance of Stuffed Animal.
 
         :return: a string representing fabric type
         """
         return self._fabric
+
+    @fabric.setter
+    def fabric(self, fabric_type):
+        """
+        Set the fabric type of this instance of Stuffed Animal.
+
+        :param fabric_type: a string
+        :precondition fabric_type: must be either "Linen", "Cotton", or "Acrylic"
+        """
+        if fabric_type.lower() not in (FabricType.linen.value,
+                                       FabricType.cotton.value, FabricType.acrylic.value):
+            raise InvalidDataError
+        self._fabric = fabric_type
 
 
 class Candy(ABC, Item):

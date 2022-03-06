@@ -1,5 +1,6 @@
 from Item import StuffedAnimals
-from stuffed_animal_enum import StuffingType, FabricType
+from stuffed_animal_enum import StuffingType, FabricType, EasterBunnyColors
+from invalid_data_error import InvalidDataError
 
 
 class DancingSkeleton(StuffedAnimals):
@@ -7,11 +8,11 @@ class DancingSkeleton(StuffedAnimals):
     Represent a dancing skeleton, which extends the abstract class of
     StuffedAnimals
     """
+
     # Unsure if Dancing Skeleton glows in the dark by default!
     def __init__(self, name: str, description: str,
                  product_id: str, size: str, glows_in_dark: bool,
                  stuffing=StuffingType.poly.value, fabric=FabricType.acrylic.value):
-
         """
         Initialize this instance of Dancing Skeleton.
 
@@ -44,7 +45,6 @@ class Reindeer(StuffedAnimals):
     def __init__(self, name: str, description: str,
                  product_id: str, size: str, nose_glows: bool,
                  stuffing=StuffingType.wool.value, fabric=FabricType.cotton.value):
-
         """
         Initialize this instance of Reindeer.
 
@@ -90,9 +90,10 @@ class EasterBunny(StuffedAnimals):
         """
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
-        self._color = color
+        self.color = color
 
-    def get_color(self):
+    @property
+    def color(self):
         """
         Return the color of this instance of Stuffed Animal.
 
@@ -100,4 +101,16 @@ class EasterBunny(StuffedAnimals):
         """
         return self._color
 
+    @color.setter
+    def color(self, color):
+        """
+        Set the color for this instance of Easter Bunny.
 
+        :param color: a string
+        :precondition color: must be either "white", "grey", "pink" or "blue"
+        """
+        if color.lower() not in (EasterBunnyColors.white.value, EasterBunnyColors.grey.value,
+                                 EasterBunnyColors.pink.value, EasterBunnyColors.blue.value):
+            raise InvalidDataError
+
+        self._color = color
