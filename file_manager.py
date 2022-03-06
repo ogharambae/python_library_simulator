@@ -7,14 +7,14 @@ class FileManager:
     """
 
     @staticmethod
-    def write_report():
+    def write_report(filename):
         """
         Read Excel file and process data to list of dictionary.
         """
 
         list_of_order = []
 
-        df = pd.read_excel(r"./orders.xlsx", index_col=0, na_values=['NA']).to_dict('records')
+        df = pd.read_excel(filename, index_col=0, na_values=['NA']).to_dict('records')
 
         for column in df:
             list_of_order.append(column)
@@ -22,10 +22,11 @@ class FileManager:
         return list_of_order
 
 
-def main():
-    FileManager.write_report()
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     filename = "./orders.xlsx"
+#     FileManager.write_report(filename)
+#
+#
+# if __name__ == '__main__':
+#     main()
 
