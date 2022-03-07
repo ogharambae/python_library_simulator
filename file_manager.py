@@ -17,7 +17,8 @@ class FileManager:
 
         df = pd.read_excel(filename)
         df = df.fillna('')
-        df = df.applymap(lambda s: s.lower() if type(s) == str else s).to_dict('records')
+        df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+        df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s) if type(s) == str else s).to_dict('records')
 
         for column in df:
             list_of_order.append(column)
@@ -31,11 +32,11 @@ class FileManager:
         pass
 
 
-# def main():
-#     filename = "./orders.xlsx"
-#     data = FileManager.read_file(filename)
-#     print("")
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    filename = "./orders.xlsx"
+    data = FileManager.read_file(filename)
+    print("")
+
+
+if __name__ == '__main__':
+    main()
