@@ -49,7 +49,7 @@ class FileManager:
 
         with open(doc_name, 'w') as f:
             f.write('HOLIDAY STORE - DAILY TRANSACTION REPORT (DRT) \n' +
-                    str(processing_time) + '\n')
+                    processing_time.strftime("%d-%m-%Y %H:%M") + '\n')
 
         for transaction in daily_transactions:
             with open(doc_name, 'a') as f:
