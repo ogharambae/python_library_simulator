@@ -13,7 +13,7 @@ class Inventory:
         :return: True if there is stock of the specified order
         """
         item = order.item
-        if item.get_product_id() in self.item_stock:
+        if item.get_inventory_key() in self.item_stock:
             if self.item_stock[item.get_inventory_key()] > order.get_quantity():
                 return True
         else:
