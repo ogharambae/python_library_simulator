@@ -40,7 +40,7 @@ class FileManager:
         Write the daily transaction report into a text file.
         """
         processing_time = datetime.now()
-        date = processing_time.strftime("%d%m%Y")
+        date = processing_time.strftime("%d%m%y")
         time = processing_time.strftime("%H%M")
 
         doc_name = 'DRT_' + date + "_" + time + ".txt"
