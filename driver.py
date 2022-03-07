@@ -1,8 +1,4 @@
-class Controller:
-    """
-    Represent the main Controller of the program
-    """
-    pass
+from Controller import Controller
 
 
 def main():
@@ -10,6 +6,7 @@ def main():
     Drives the program
     """
     controller = Controller()
+    controller.run()
 
 
 if __name__ == '__main__':

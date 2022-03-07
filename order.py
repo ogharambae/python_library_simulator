@@ -38,7 +38,7 @@ class Order:
 
         :return: a string representing item_type
         """
-        return self.item
+        return self._item
 
     @item.setter
     def item(self, item_info):

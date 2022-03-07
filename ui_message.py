@@ -53,7 +53,7 @@ class UIMessage:
         return f"Please select from one of the following 3 options: \n" \
                f"1. Process Web Orders\n" \
                f"2. Check Inventory\n" \
-               f"3. Exit"
+               f"3. Exit\n"
 
     @staticmethod
     def invalid_menu_input_message():
@@ -66,3 +66,7 @@ class UIMessage:
     @staticmethod
     def file_not_found_message():
         return "Error: Cannot find the file."
+
+    @staticmethod
+    def web_order_processed_successfully():
+        return "Success! System successfully processed your web orders"

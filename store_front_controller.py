@@ -1,4 +1,5 @@
 from store import Store
+from file_manager import FileManager
 
 
 class StoreFrontController:
@@ -21,7 +22,7 @@ class StoreFrontController:
                 self.store.inventory.fulfill_order(order)
                 self.store.append_order(order)
             else:
-                self.store.inventory.restock()
+                self.store.inventory.restock(order.item)
                 self.store.inventory.fulfill_order(order)
                 self.store.append_order(order)
         return self.store.orders
@@ -33,3 +34,32 @@ class StoreFrontController:
         :return: a list representing a list of orders
         """
         return self.store.orders
+
+    def generate_daily_transaction_report(self):
+        """
+        Generate daily transaction report for all orders stored in instance variable Store.
+        """
+        FileManager.write_report(self.store.orders)
+
+    def get_store_inventory(self):
+        """
+        Return the inventory of the store in this instance of store from controller.
+
+        :return: inventory as a list
+        """
+        return self.store.get_inventory_stock_list()
+
+    def check_inventory(self):
+        """
+        Check inventory and print total stock levels.
+        """
+
+        for inventory_key, item in self.get_store_inventory().items():
+            if item["quantity"] > 10:
+                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", In Stock")
+            elif 10 > item["quantity"] > 3:
+                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Low")
+            elif 3 > item["quantity"] > 0:
+                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Very Low")
+            else:
+                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Out of Stock")

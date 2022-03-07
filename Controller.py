@@ -4,37 +4,47 @@ from ui_message import UIMessage
 
 
 class Controller:
+    """
+    Control flow of command for inventory system.
+    """
     def __init__(self):
+        """
+        Initialize an instance of Controller.
+        """
         self.store_front_controller = StoreFrontController()
-        filename = self.try_catch_filename()
-        self.order_processor_controller = OrderProcessor(filename)
 
     def run(self):
+        """
+        Run main menu of program.
+        """
         end_program = False
         while not end_program:
             user_input = self.try_catch_user_input()
             match user_input:
                 case "1":
-                    return self.check_inventory()
+                    self.process_web_orders()
                 case "2":
-                    return self.store_front_controller
+                    self.check_inventory()
                 case "3":
                     end_program = True
+        self.store_front_controller.generate_daily_transaction_report()
         print(UIMessage.exit_message())
 
     def check_inventory(self):
-        for item in self.store_front_controller.store.inventory.item_stock:
-            if item["quantity"] > 10:
-                print(item["name"] + ": " + "In Stock")
-            elif 10 > item["quantity"] > 3:
-                print(item["name"] + ": " + "Low")
-            elif 3 > item["quantity"] > 0:
-                print(item["name"] + ": " + "Very Low")
-            else:
-                print(item["name"] + ": " + "Out of Stock")
+        """
+        Check current inventory levels in current instance of Store Front.
+        """
+        self.store_front_controller.check_inventory()
 
-    def process_web_orders(self, filename):
-        pass
+    def process_web_orders(self):
+        """
+        Process user-provided file, adding all order elements to store_front_controller.
+        """
+        filename = self.try_catch_filename()
+        order_processor_controller = OrderProcessor(filename)
+        order_list = order_processor_controller.create_order()
+        print(UIMessage.web_order_processed_successfully())
+        self.store_front_controller.import_order(order_list)
 
     @classmethod
     def try_catch_filename(cls):
