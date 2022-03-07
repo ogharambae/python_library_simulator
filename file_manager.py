@@ -1,6 +1,8 @@
+from datetime import datetime
+
 import pandas as pd
 from order import Order
-import math
+
 
 class FileManager:
     """
@@ -18,7 +20,8 @@ class FileManager:
         df = pd.read_excel(filename)
         df = df.fillna('')
         df = df.applymap(lambda s: s.lower() if type(s) == str else s)
-        df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s) if type(s) == str else s).to_dict('records')
+        df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s) if type(s) == str else s).to_dict(
+            'records')
 
         for column in df:
             list_of_order.append(column)
@@ -27,16 +30,21 @@ class FileManager:
     @staticmethod
     def write_report(orders: list[Order]):
         """
-        Write the daily report into an excel file
+        Write the daily transaction report into a text file.
         """
-        pass
+        processing_time = datetime.now()
+        date = processing_time.strftime("%d%m%Y")
+        time = processing_time.strftime("%H%M")
 
+        doc_name = 'DRT_' + date + "_" + time + ".txt"
 
-def main():
-    filename = "./orders.xlsx"
-    data = FileManager.read_file(filename)
-    print("")
+        daily_transactions = orders
 
+        with open(doc_name, 'w') as f:
+            f.write('HOLIDAY STORE - DAILY TRANSACTION REPORT (DRT) \n' +
+                    str(processing_time) + '\n')
 
-if __name__ == '__main__':
-    main()
+        for transaction in daily_transactions:
+            with open(doc_name, 'a') as f:
+                f.write(transaction.__repr__() + '\n')
+
