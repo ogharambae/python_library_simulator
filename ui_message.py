@@ -43,3 +43,22 @@ class UIMessage:
     @staticmethod
     def order_type_message():
         return "Item Type Must be either Toy, Candy or Stuffed Animal"
+
+    @staticmethod
+    def invalid_file_name_message():
+        return "The file name you have entered is an invalid file name."
+
+    @staticmethod
+    def display_ui_menu():
+        return f"Please select from one of the following 3 options: \n" \
+               f"1. Process Web Orders\n" \
+               f"2. Check Inventory\n" \
+               f"3. Exit"
+
+    @staticmethod
+    def invalid_menu_input_message():
+        return "Invalid input. Please enter in either 1, 2 or 3."
+
+    @staticmethod
+    def exit_message():
+        return "Printing out and exiting the program."
