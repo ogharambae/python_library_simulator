@@ -62,3 +62,7 @@ class UIMessage:
     @staticmethod
     def exit_message():
         return "Printing out and exiting the program."
+
+    @staticmethod
+    def file_not_found_message():
+        return "Error: Cannot find the file."

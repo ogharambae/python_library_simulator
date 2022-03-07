@@ -1,7 +1,9 @@
 from datetime import datetime
+from pathlib import Path
 
 import pandas as pd
 from order import Order
+from ui_message import UIMessage
 
 
 class FileManager:
@@ -16,16 +18,21 @@ class FileManager:
         """
 
         list_of_order = []
-
-        df = pd.read_excel(filename)
-        df = df.fillna('')
-        df = df.applymap(lambda s: s.lower() if type(s) == str else s)
-        df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s) if type(s) == str else s).to_dict(
-            'records')
-
-        for column in df:
-            list_of_order.append(column)
-        return list_of_order
+        try:
+            if Path(filename).is_file():
+                df = pd.read_excel(filename)
+                df = df.fillna('')
+                df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+                df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s)
+                        if type(s) == str else s).to_dict('records')
+                for column in df:
+                    list_of_order.append(column)
+                return list_of_order
+            else:
+                raise FileNotFoundError
+        except FileNotFoundError:
+            print(UIMessage.file_not_found_message())
+            exit()
 
     @staticmethod
     def write_report(orders: list[Order]):
@@ -47,4 +54,3 @@ class FileManager:
         for transaction in daily_transactions:
             with open(doc_name, 'a') as f:
                 f.write(transaction.__str__() + '\n')
-
