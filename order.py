@@ -17,14 +17,19 @@ class Order:
         :param product_detail: a string
         :param item: an item constructed within order
         """
-
         self._order_num = kwargs["order_number"]
         self._id = kwargs["product_id"]
         self._item_type = kwargs["item"]
         self._item_name = kwargs["name"]
         self._product_detail = kwargs
         self._item_factory = kwargs["item_factory"]
+        self._order_success = None
+        self._warning_message = ""
         self.item = kwargs
+
+    @property
+    def order_success(self):
+        return self._order_success
 
     @property
     def item(self):
@@ -105,6 +110,12 @@ class Order:
         :return: a string
         """
         return self._warning_message
+
+    def get_quantity(self):
+        """
+        Returns the quantity amount within the product details of the item.
+        """
+        return self._product_detail["quantity"]
 
     def __repr__(self):
         return "Order [%d, %s, %s, %s]" % (
