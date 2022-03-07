@@ -6,7 +6,7 @@ class ItemEnum(Enum):
     Enum class which represents various Item types.
     """
     TOY = "toy"
-    ANIMAL = "animal"
+    ANIMAL = "stuffedanimal"
     CANDY = "candy"
 
 
@@ -33,7 +33,7 @@ class StuffingType(Enum):
     An enum class with all stuffing types used in StuffedAnimal Class.
     """
 
-    POLY = "polyester fiberfill"
+    POLY = "polyester fibrefill"
     WOOL = "wool"
 
 
@@ -57,7 +57,7 @@ class SizeOptions(Enum):
     LRG = "large"
 
 
-class EasterBunnyColors(Enum):
+class EasterBunnyColours(Enum):
     """
     An enum class representing the possible colors
     of an EasterBunny Stuffed Animal
@@ -76,7 +76,7 @@ class SpiderType(Enum):
     WOLF = "wolf spider"
 
 
-class RobotBunnyColor(Enum):
+class RobotBunnyColour(Enum):
     """
     An enum class that represents the various colors of a RobotBunny.
     """

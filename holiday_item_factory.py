@@ -48,8 +48,8 @@ class EasterItemFactory:
 
     @staticmethod
     def get_item_factory(item_type):
-        match item_type.value:
-            case ItemEnum.CANDY:
+        match item_type:
+            case ItemEnum.CANDY.value:
                 return CremeEgg
             case ItemEnum.ANIMAL.value:
                 return EasterBunny

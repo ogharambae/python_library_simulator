@@ -53,19 +53,19 @@ class Toys(Item, ABC):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, has_battery: bool, min_age: int):
+                 product_id: str, has_batteries: bool, min_age: int):
         """
         Initialize this instance of Toy.
 
         :param name: a string
         :param description: a string
         :param product_id: a string
-        :param has_battery: a boolean
+        :param has_batteries: a boolean
         :param min_age: an int
         """
 
         super().__init__(name, description, product_id)
-        self._has_battery = has_battery
+        self._has_batteries = has_batteries
         self._min_age = min_age
 
     def get_battery(self):
@@ -75,7 +75,7 @@ class Toys(Item, ABC):
 
         :return: a boolean representing battery status
         """
-        return self._has_battery
+        return self._has_batteries
 
     def get_min_age(self):
         """
@@ -127,7 +127,7 @@ class StuffedAnimals(Item, ABC):
         :precondition stuffing: must be either "Polyester FiberFill" or "Wool"
         """
 
-        if stuffing.lower not in (StuffingType.wool.value, StuffingType.poly.value):
+        if stuffing not in [e.value for e in StuffingType]:
             raise InvalidDataError(UIMessage.stuffing_type_error_message())
 
         self._stuffing_type = stuffing
@@ -149,7 +149,7 @@ class StuffedAnimals(Item, ABC):
         :param size: a string
         :precondition size: must be either "small", "medium", or "large"
         """
-        if size.lower() not in (SizeOptions.sm.value, SizeOptions.med.value, SizeOptions.lrg.value):
+        if size not in [e.value for e in SizeOptions]:
             raise InvalidDataError(UIMessage.size_error_message())
 
         self._size = size

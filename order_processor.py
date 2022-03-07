@@ -1,4 +1,4 @@
-from Order import Order
+from order import Order
 from factory_mapping import FactoryMapping
 from file_manager import FileManager
 
@@ -52,7 +52,8 @@ class OrderProcessor:
 def main():
     filename = "./orders.xlsx"
     my_order = OrderProcessor(filename)
-    my_order.create_order()
+    order_list = my_order.create_order()
+    print(order_list)
 
 
 if __name__ == '__main__':

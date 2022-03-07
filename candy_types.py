@@ -11,7 +11,7 @@ class PumpkinCaramelToffee(Candy):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, variety, has_nuts=True, has_lactose=True):
+                 product_id: str, variety, has_nuts=True, has_lactose=True, **kwargs):
         """
         Initialize this instance of Pumpkin Caramel Toffee.
 
@@ -44,7 +44,7 @@ class PumpkinCaramelToffee(Candy):
         :precondition variety_type: variety type must be either "Sea Salt" or "Regular"
         """
 
-        if variety_type.lower() not in (ToffeeVariety.SALT.value, ToffeeVariety.REG.value):
+        if variety_type.lower() not in [e.value for e in ToffeeVariety]:
             raise InvalidDataError(UIMessage.toffee_error_message())
 
         self._variety = variety_type
@@ -67,42 +67,41 @@ class CandyCane(Candy):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, stripes: str, has_nuts=False, has_lactose=False):
+                 product_id: str, colour: str, has_nuts=False, has_lactose=False, **kwargs):
         """
         Initialize this instance of CandyCane.
 
         :param name: a string
         :param description: a string
         :param product_id: a string
-        :param stripes: a string, either "Red" or "Green"
+        :param colour: a string, either "Red" or "Green"
         :param has_nuts: A boolean False by default
         :param has_lactose: a boolean False by default
         """
         super().__init__(name, description, product_id, has_nuts, has_lactose)
-        self.stripes = stripes
+        self.colour = colour
 
     @property
-    def stripes(self):
+    def colour(self):
         """
         Return the stripe color of this instance of CandyCane.
 
         :return: a string, either "Red" or "Green"
         """
-        return self._stripes
+        return self._colour
 
-    @stripes.setter
-    def stripes(self, stripe_type):
+    @colour.setter
+    def colour(self, colour):
         """
         Set the stipe type of this instance of Candy Cane.
 
-        :param stripe_type: a string
+        :param colour: a string
         :precondition: must be either "Red" or "Green"
         """
-        if stripe_type.lower() not in (CandyCaneVariety.RED.value,
-                                       CandyCaneVariety.GREEN.value):
+        if colour.lower() not in [e.value for e in CandyCaneVariety]:
             raise InvalidDataError(UIMessage.candy_cane_error_message())
 
-        self._stripes = stripe_type
+        self._colour = colour
 
     def __str__(self):
         """
@@ -113,7 +112,7 @@ class CandyCane(Candy):
 
         return "Item Candy, Product ID: {}, Name: {}, Does Not Contain Nuts," \
                " Does Not Contain Lactose, Stripes: {}".format(self.get_product_id(),
-                                                               self.get_name(), self.stripes)
+                                                               self.get_name(), self.colour)
 
 
 class CremeEgg(Candy):
@@ -122,7 +121,7 @@ class CremeEgg(Candy):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, pack_size: int, has_nuts=True, has_lactose=True):
+                 product_id: str, pack_size: int, has_nuts=True, has_lactose=True, **kwargs):
         """
         Initialize this instance of CremeEgg.
 

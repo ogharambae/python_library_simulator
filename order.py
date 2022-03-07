@@ -18,15 +18,13 @@ class Order:
         :param item: an item constructed within order
         """
 
-        self._order_num = kwargs["order_num"]
+        self._order_num = kwargs["order_number"]
         self._id = kwargs["product_id"]
-        self._item_type = kwargs["item_type"]
-        self._item_name = kwargs["item_name"]
-        self._product_detail = kwargs["product_detail"]
+        self._item_type = kwargs["item"]
+        self._item_name = kwargs["name"]
+        self._product_detail = kwargs
         self._item_factory = kwargs["item_factory"]
         self.item = kwargs
-        self._order_success = None
-        self._warning_message = None
 
     @property
     def item(self):
@@ -46,8 +44,7 @@ class Order:
         """
 
         try:
-            new_inventory_item = self._item_factory(item_info)
-
+            new_inventory_item = self._item_factory(**item_info)
         except InvalidDataError as e:
 
             self._order_success = False
@@ -58,6 +55,7 @@ class Order:
         else:
             self._order_success = True
             self._item = new_inventory_item
+            self._warning_message = None
 
     def get_order_num(self):
         """

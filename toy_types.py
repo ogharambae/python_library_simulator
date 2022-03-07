@@ -1,5 +1,5 @@
 from Item import Toys
-from item_enum import SpiderType, RobotBunnyColor
+from item_enum import SpiderType, RobotBunnyColour
 from invalid_data_error import InvalidDataError
 from ui_message import UIMessage
 
@@ -11,7 +11,7 @@ class SantaWorkshop(Toys):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, min_age: int, dimensions, num_rooms: int, has_battery=False):
+                 product_id: str, min_age: int, dimensions, num_rooms: int, has_batteries=False, **kwargs):
         """
         Initialize this instance of Santa's Workshop.
 
@@ -21,10 +21,10 @@ class SantaWorkshop(Toys):
         :param min_age: an int
         :param dimensions: an int
         :param num_rooms: an int
-        :param has_battery: a boolean, default value is false
+        :param has_batteries: a boolean, default value is false
         """
 
-        super().__init__(name, description, product_id, has_battery, min_age)
+        super().__init__(name, description, product_id, has_batteries, min_age)
         self._dimensions = dimensions
         self._num_rooms = num_rooms
 
@@ -65,8 +65,8 @@ class RCSpider(Toys):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, min_age: int, speed, jump_height, glows_in_dark,
-                 spider_type, has_battery=True):
+                 product_id: str, min_age: int, speed, jump_height, has_glow,
+                 spider_type, has_battery=True, **kwargs):
         """
         Initialize this instance of RC Spider.
 
@@ -76,7 +76,7 @@ class RCSpider(Toys):
         :param min_age: an int
         :param speed: a float
         :param jump_height: a float
-        :param glows_in_dark: boolean, True if glows in dark. else False
+        :param has_glow: boolean, True if glows in dark. else False
         :param spider_type: String either Tarantula or a Wolf Spider
         :param has_battery: Boolean, default True
         """
@@ -84,7 +84,7 @@ class RCSpider(Toys):
         super().__init__(name, description, product_id, has_battery, min_age)
         self._speed = speed
         self._jump_height = jump_height
-        self._glows = glows_in_dark
+        self._has_glow = has_glow
         self.spider = spider_type
 
     def get_speed(self):
@@ -109,7 +109,7 @@ class RCSpider(Toys):
 
         :return: a boolean, true if glows in the dark, else False
         """
-        return self._glows
+        return self._has_glow
 
     @property
     def spider(self):
@@ -128,7 +128,7 @@ class RCSpider(Toys):
         :param spider_type: a string
         :precondition spider_type: must be either a "Tarantula" or a "Wolf Spider"
         """
-        if spider_type.lower() not in (SpiderType.TARANTULA.value, SpiderType.WOLF.value):
+        if spider_type.lower() not in [e.value for e in SpiderType]:
             raise InvalidDataError(UIMessage.spider_type_error_message())
 
         self._spider_type = spider_type
@@ -155,8 +155,8 @@ class RobotBunny(Toys):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, min_age: int, num_sound_effects: int,
-                 color, has_battery=True):
+                 product_id: str, min_age: int, num_sound: int,
+                 colour, has_battery=True, **kwargs):
         """
         Initialize this instance of Robot Bunny
 
@@ -164,14 +164,14 @@ class RobotBunny(Toys):
         :param description: a string
         :param product_id: a string
         :param min_age: an int
-        :param num_sound_effects: an int
-        :param color: a string
+        :param num_sound: an int
+        :param colour: a string
         :param has_battery: a boolean, default value True
         """
 
         super().__init__(name, description, product_id, has_battery, min_age)
-        self._num_sound_effects = num_sound_effects
-        self._color = color
+        self._num_sound = num_sound
+        self._colour = colour
 
     def get_num_sound_effects(self):
         """
@@ -179,29 +179,28 @@ class RobotBunny(Toys):
 
         :return: an int
         """
-        return self._num_sound_effects
+        return self._num_sound
 
     @property
-    def color(self):
+    def colour(self):
         """
         Return the color of this instance of Robot Bunny.
 
         :return: a string
         """
-        return self._color
+        return self._colour
 
-    @color.setter
-    def color(self, color: str):
+    @colour.setter
+    def colour(self, colour: str):
         """
         Set the color of this instance of RobotBunny.
 
-        :param color: a string
+        :param colour: a string
         :precondition color: must be either "Orange", "Blue", or "Pink"
         """
-        if color.lower() not in (RobotBunnyColor.ORANGE.value, RobotBunnyColor.BLUE.value,
-                                 RobotBunnyColor.PINK.value):
-            raise InvalidDataError(UIMessage.robot_bunny_color_error_message())
-        self._color = color
+        if colour not in [e.value for e in RobotBunnyColour]:
+            raise InvalidDataError(UIMessage.robot_bunny_colour_error_message())
+        self._colour = colour
 
     def __str__(self):
         """
@@ -213,4 +212,4 @@ class RobotBunny(Toys):
         return "Item Toy, Product ID: {}, Name: {}, Recommended Age: {}," \
                "Num of Sound Effects: {}, Color {}".format(self.get_product_id(), self.get_name(),
                                                            self.get_min_age(),
-                                                           self.get_num_sound_effects(), self.color)
+                                                           self.get_num_sound_effects(), self.colour)

@@ -25,8 +25,8 @@ class UIMessage:
         return "RC Spider Type must be either Tarantula or Wolf"
 
     @staticmethod
-    def robot_bunny_color_error_message():
-        return "Bunny Color must be either Orange, Blue or Pink"
+    def robot_bunny_colour_error_message():
+        return "Bunny Colour must be either Orange, Blue or Pink"
 
     @staticmethod
     def stuffing_type_error_message():

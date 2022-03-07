@@ -1,5 +1,5 @@
 from Item import StuffedAnimals
-from item_enum import StuffingType, FabricType, EasterBunnyColors
+from item_enum import StuffingType, FabricType, EasterBunnyColours
 from invalid_data_error import InvalidDataError
 from ui_message import UIMessage
 
@@ -12,8 +12,8 @@ class DancingSkeleton(StuffedAnimals):
 
     # Unsure if Dancing Skeleton glows in the dark by default!
     def __init__(self, name: str, description: str,
-                 product_id: str, size: str, glows_in_dark: bool,
-                 stuffing=StuffingType.POLY.value, fabric=FabricType.ACRYLIC.value):
+                 product_id: str, size: str, has_glow: bool,
+                 stuffing=StuffingType.POLY.value, fabric=FabricType.ACRYLIC.value, **kwargs):
         """
         Initialize this instance of Dancing Skeleton.
 
@@ -21,13 +21,13 @@ class DancingSkeleton(StuffedAnimals):
         :param description: a string
         :param product_id: a string
         :param size: a string
-        :param glows_in_dark: a boolean, true if Glows in dark
+        :param has_glow: a boolean, true if Glows in dark
         :param stuffing: a string
         :param fabric: a string
         """
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
-        self._glows_in_dark = glows_in_dark
+        self._has_glow = has_glow
 
     def get_glows_in_dark(self):
         """
@@ -35,7 +35,7 @@ class DancingSkeleton(StuffedAnimals):
 
         :return: a boolean
         """
-        return self._glows_in_dark
+        return self._has_glow
 
     def __str__(self):
         """
@@ -55,8 +55,8 @@ class Reindeer(StuffedAnimals):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, size: str, nose_glows: bool,
-                 stuffing=StuffingType.WOOL.value, fabric=FabricType.COTTON.value):
+                 product_id: str, size: str, has_glow: bool,
+                 stuffing=StuffingType.WOOL.value, fabric=FabricType.COTTON.value, **kwargs):
         """
         Initialize this instance of Reindeer.
 
@@ -64,21 +64,21 @@ class Reindeer(StuffedAnimals):
         :param description: a string
         :param product_id: a string
         :param size: a string
-        :param nose_glows: boolean
+        :param has_glow: boolean
         :param stuffing: a string
         :param fabric: a string
         """
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
-        self._nose_glows = nose_glows
+        self._has_glow = has_glow
 
-    def get_nose_glow(self):
+    def get_has_glow(self):
         """
         Return nose attribute of this instance of Reindeer.
 
         :return: a boolean, true if nose glows, else false
         """
-        return self._nose_glows
+        return self._has_glow
 
     def __str__(self):
         """
@@ -88,7 +88,7 @@ class Reindeer(StuffedAnimals):
         """
         return "Item StuffedAnimal, Product ID: {}, Name: {}, Nose Glows: {}," \
                " Size {}, Stuffing: {}, Fabric: {}".format(self.get_product_id(),
-                                                           self.get_name(), self.get_nose_glow(),
+                                                           self.get_name(), self.get_has_glow(),
                                                            self.size, self.stuffing_type, self.fabric)
 
 
@@ -98,8 +98,8 @@ class EasterBunny(StuffedAnimals):
     """
 
     def __init__(self, name: str, description: str,
-                 product_id: str, size: str, color: str,
-                 stuffing=StuffingType.POLY.value, fabric=FabricType.LINEN.value):
+                 product_id: str, size: str, colour: str,
+                 stuffing=StuffingType.POLY.value, fabric=FabricType.LINEN.value, **kwargs):
         """
         Initialize this instance of EasterBunny.
 
@@ -107,36 +107,35 @@ class EasterBunny(StuffedAnimals):
         :param description: a string
         :param product_id: a string
         :param size: a string
-        :param color: a string
+        :param colour: a string
         :param stuffing: a string, default value of Polyester
         :param fabric: a string, default value of Linen
         """
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
-        self.color = color
+        self.colour = colour
 
     @property
-    def color(self):
+    def colour(self):
         """
         Return the color of this instance of Stuffed Animal.
 
         :return: a string representing color
         """
-        return self._color
+        return self._colour
 
-    @color.setter
-    def color(self, color):
+    @colour.setter
+    def colour(self, colour):
         """
         Set the color for this instance of Easter Bunny.
 
-        :param color: a string
+        :param colour: a string
         :precondition color: must be either "white", "grey", "pink" or "blue"
         """
-        if color.lower() not in (EasterBunnyColors.WHITE.value, EasterBunnyColors.GREY.value,
-                                 EasterBunnyColors.PINK.value, EasterBunnyColors.BLUE.value):
+        if colour not in [e.value for e in EasterBunnyColours]:
             raise InvalidDataError(UIMessage.stuffed_animal_error())
 
-        self._color = color
+        self._colour = colour
 
     def __str__(self):
         """
@@ -146,5 +145,5 @@ class EasterBunny(StuffedAnimals):
         """
         return "Item StuffedAnimal, Product ID: {}, Name: {}, Color: {}," \
                " Size {}, Stuffing: {}, Fabric: {}".format(self.get_product_id(),
-                                                           self.get_name(), self.color,
+                                                           self.get_name(), self.colour,
                                                            self.size, self.stuffing_type, self.fabric)
