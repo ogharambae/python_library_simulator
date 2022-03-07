@@ -49,13 +49,14 @@ class OrderProcessor:
         return order_list
 
 
-def main():
-    filename = "./orders.xlsx"
-    my_order = OrderProcessor(filename)
-    order_list = my_order.create_order()
-    print(order_list)
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     filename = "./orders.xlsx"
+#     my_order = OrderProcessor(filename)
+#     order_list = my_order.create_order()
+#     for order in order_list:
+#         print(repr(order))
+#
+#
+# if __name__ == '__main__':
+#     main()
 

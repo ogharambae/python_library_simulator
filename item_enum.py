@@ -52,9 +52,9 @@ class SizeOptions(Enum):
     An enum class representing all the sizes of a StuffedAnimal.
     """
 
-    SM = "small"
-    MED = "medium"
-    LRG = "large"
+    SM = "s"
+    MED = "m"
+    LRG = "l"
 
 
 class EasterBunnyColours(Enum):

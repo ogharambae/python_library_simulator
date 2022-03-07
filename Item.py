@@ -171,8 +171,7 @@ class StuffedAnimals(Item, ABC):
         :param fabric_type: a string
         :precondition fabric_type: must be either "Linen", "Cotton", or "Acrylic"
         """
-        if fabric_type.lower() not in (FabricType.linen.value,
-                                       FabricType.cotton.value, FabricType.acrylic.value):
+        if fabric_type not in [e.value for e in FabricType]:
             raise InvalidDataError(UIMessage.fabric_error_message())
         self._fabric = fabric_type
 

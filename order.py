@@ -106,5 +106,9 @@ class Order:
         """
         return self._warning_message
 
+    def __repr__(self):
+        return "Order [%d, %s, %s, %s]" % (
+            self._order_num, self._item_name, self._item_type, "success" if self._order_success else "failed")
+
     def __str__(self):
         pass
