@@ -46,5 +46,5 @@ class FileManager:
 
         for transaction in daily_transactions:
             with open(doc_name, 'a') as f:
-                f.write(transaction.__repr__() + '\n')
+                f.write(transaction.__str__() + '\n')
 

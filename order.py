@@ -122,4 +122,5 @@ class Order:
             self._order_num, self._item_name, self._item_type, "success" if self._order_success else "failed")
 
     def __str__(self):
-        pass
+        return f'Order {self._order_num}, Item {self._item_type.title()}, Product ID {self.get_id().title()}, ' \
+               f'Name "{self._item_name.title()}", Quantity {self.get_quantity()}'
