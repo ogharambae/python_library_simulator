@@ -21,6 +21,7 @@ class Item(ABC):
         self._name = name
         self._description = description
         self._product_ID = product_id
+        self.inventory_key = None
 
     def get_name(self):
         """
@@ -45,6 +46,9 @@ class Item(ABC):
         :return: a string representing product id
         """
         return self._product_ID
+
+    def get_inventory_key(self):
+        return self.inventory_key
 
 
 class Toys(Item, ABC):
