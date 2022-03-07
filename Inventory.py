@@ -14,19 +14,19 @@ class Inventory:
         """
         item = order.item
         if item.get_product_id() in self.item_stock:
-            if self.item_stock[item.get_product_id] > order.get_quantity():
+            if self.item_stock[item.get_inventory_key()] > order.get_quantity():
                 return True
         else:
-            self.item_stock[item.get_product_id] = 0
+            self.item_stock[item.get_inventory_key()] = 0
 
     def restock(self, item):
         """
         Restocks an item by a count of 100.
         """
-        self.item_stock[item.get_product_id()] += 100
+        self.item_stock[item.get_inventory_key()] += 100
 
     def fulfill_order(self, order):
         """
         Reduces the amount of stock of a specified item by the specified amount.
         """
-        self.item_stock[order.item.get_product_id()] -= order.get_quantity()
+        self.item_stock[order.item.get_inventory_key()] -= order.get_quantity()
