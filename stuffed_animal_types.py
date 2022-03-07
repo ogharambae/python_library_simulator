@@ -28,6 +28,7 @@ class DancingSkeleton(StuffedAnimals):
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
         self._has_glow = has_glow
+        self.inventory_key = "ds"
 
     def get_glows_in_dark(self):
         """
@@ -71,6 +72,7 @@ class Reindeer(StuffedAnimals):
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
         self._has_glow = has_glow
+        self.inventory_key = "rd"
 
     def get_has_glow(self):
         """
@@ -114,6 +116,7 @@ class EasterBunny(StuffedAnimals):
 
         super().__init__(name, description, product_id, stuffing, size, fabric)
         self.colour = colour
+        self.inventory_key = "eb_" + str(colour)
 
     @property
     def colour(self):

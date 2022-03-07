@@ -27,6 +27,7 @@ class SantaWorkshop(Toys):
         super().__init__(name, description, product_id, has_batteries, min_age)
         self._dimensions = dimensions
         self._num_rooms = num_rooms
+        self.inventory_key = "sw"
 
     def get_dimensions(self):
         """
@@ -86,6 +87,7 @@ class RCSpider(Toys):
         self._jump_height = jump_height
         self._has_glow = has_glow
         self.spider = spider_type
+        self.inventory_key = "rcs_" + str(spider_type)
 
     def get_speed(self):
         """
@@ -172,6 +174,7 @@ class RobotBunny(Toys):
         super().__init__(name, description, product_id, has_battery, min_age)
         self._num_sound = num_sound
         self._colour = colour
+        self.inventory_key = "rb_" + str(colour)
 
     def get_num_sound_effects(self):
         """

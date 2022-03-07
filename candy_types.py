@@ -25,6 +25,7 @@ class PumpkinCaramelToffee(Candy):
 
         super().__init__(name, description, product_id, has_nuts, has_lactose)
         self.variety = variety
+        self.inventory_key = "pct_" + str(variety)
 
     @property
     def variety(self):
@@ -80,6 +81,7 @@ class CandyCane(Candy):
         """
         super().__init__(name, description, product_id, has_nuts, has_lactose)
         self.colour = colour
+        self.inventory_key = "cc_" + str(colour)
 
     @property
     def colour(self):
@@ -135,6 +137,7 @@ class CremeEgg(Candy):
 
         super().__init__(name, description, product_id, has_nuts, has_lactose)
         self.pack_size = pack_size
+        self.inventory_key = "ce_" + str(pack_size)
 
     @property
     def pack_size(self):
