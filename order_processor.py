@@ -53,8 +53,7 @@ class OrderProcessor:
 #     filename = "./orders.xlsx"
 #     my_order = OrderProcessor(filename)
 #     order_list = my_order.create_order()
-#     for order in order_list:
-#         print(repr(order))
+#     FileManager.write_report(order_list)
 #
 #
 # if __name__ == '__main__':
