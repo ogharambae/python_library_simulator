@@ -55,9 +55,9 @@ class StoreFrontController:
         """
 
         for inventory_key, item in self.get_store_inventory().items():
-            if item["quantity"] > 10:
+            if item["quantity"] >= 10:
                 print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", In Stock")
-            elif 10 > item["quantity"] > 3:
+            elif 10 > item["quantity"] >= 3:
                 print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Low")
             elif 3 > item["quantity"] > 0:
                 print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Very Low")
