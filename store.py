@@ -1,4 +1,4 @@
-from Inventory import Inventory
+from inventory import Inventory
 
 
 class Store:

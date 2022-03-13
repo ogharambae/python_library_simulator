@@ -4,6 +4,9 @@ class Inventory:
     """
 
     def __init__(self):
+        """
+        Initialize Inventory
+        """
         self.item_stock = {}
 
     def check_stock(self, order):

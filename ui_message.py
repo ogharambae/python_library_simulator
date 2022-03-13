@@ -68,5 +68,9 @@ class UIMessage:
         return "Error: Cannot find the file."
 
     @staticmethod
+    def file_invalid_excel_message():
+        return "Error: Unsupported file type, accept excel file xlsx only."
+
+    @staticmethod
     def web_order_processed_successfully():
         return "Success! System successfully processed your web orders"

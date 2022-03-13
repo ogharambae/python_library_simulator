@@ -43,7 +43,6 @@ class Controller:
         filename = self.try_catch_filename()
         order_processor_controller = OrderProcessor(filename)
         order_list = order_processor_controller.create_order()
-        print(UIMessage.web_order_processed_successfully())
         self.store_front_controller.import_order(order_list)
 
     @classmethod

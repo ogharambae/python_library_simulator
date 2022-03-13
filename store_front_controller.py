@@ -53,13 +53,16 @@ class StoreFrontController:
         """
         Check inventory and print total stock levels.
         """
+        if len(self.get_store_inventory()) == 0:
+            print("Currently, there is no items in the inventory!")
+            return
 
         for inventory_key, item in self.get_store_inventory().items():
             if item["quantity"] >= 10:
-                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", In Stock")
+                print(item["name"].title() + ": Total qty -> " + str(item["quantity"]) + ", In Stock")
             elif 10 > item["quantity"] >= 3:
-                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Low")
+                print(item["name"].title() + ": Total qty -> " + str(item["quantity"]) + ", Low")
             elif 3 > item["quantity"] > 0:
-                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Very Low")
+                print(item["name"].title() + ": Total qty -> " + str(item["quantity"]) + ", Very Low")
             else:
-                print(item["name"] + ": Total qty -> " + str(item["quantity"]) + ", Out of Stock")
+                print(item["name"].title() + ": Total qty -> " + str(item["quantity"]) + ", Out of Stock")

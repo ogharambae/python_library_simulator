@@ -18,21 +18,18 @@ class FileManager:
         """
 
         list_of_order = []
-        try:
-            if Path(filename).is_file():
-                df = pd.read_excel(filename)
-                df = df.fillna('')
-                df = df.applymap(lambda s: s.lower() if type(s) == str else s)
-                df = df.applymap(lambda s: True if s == "y" else (False if s == "n" else s)
-                        if type(s) == str else s).to_dict('records')
-                for column in df:
-                    list_of_order.append(column)
-                return list_of_order
-            else:
-                raise FileNotFoundError
-        except FileNotFoundError:
-            print(UIMessage.file_not_found_message())
-            exit()
+
+        if Path(filename).is_file():
+            df = pd.read_excel(filename)
+            df = df.fillna('')
+            df = df.applymap(lambda s: s.lower() if type(s) == str else s)
+            df = df.applymap(
+                lambda s: True if s == "y" else (False if s == "n" else s) if type(s) == str else s).to_dict('records')
+            for column in df:
+                list_of_order.append(column)
+        else:
+            raise FileNotFoundError
+        return list_of_order
 
     @staticmethod
     def write_report(orders: list[Order]):
@@ -43,7 +40,7 @@ class FileManager:
         date = processing_time.strftime("%d%m%y")
         time = processing_time.strftime("%H%M")
 
-        doc_name = 'DRT_' + date + "_" + time + ".txt"
+        doc_name = 'DTR_' + date + "_" + time + ".txt"
 
         daily_transactions = orders
 

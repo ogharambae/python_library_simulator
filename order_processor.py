@@ -1,6 +1,7 @@
 from order import Order
 from factory_mapping import FactoryMapping
 from file_manager import FileManager
+from ui_message import UIMessage
 
 
 class OrderProcessor:
@@ -12,17 +13,24 @@ class OrderProcessor:
         """
         Instantiate an object to process the order
         """
-        self._data = self.import_data(filename)
+        self._data = []
+        self.import_data(filename)
 
-    @classmethod
-    def import_data(cls, filename):
+    def import_data(self, filename):
         """
         Import the data from the FileManager class.
 
         :return: data containing the order information
         """
-        data = FileManager.read_file(filename)
-        return data
+        try:
+            data = FileManager.read_file(filename)
+        except FileNotFoundError:
+            print(UIMessage.file_not_found_message())
+        except ValueError:
+            print(UIMessage.file_invalid_excel_message())
+        else:
+            print(UIMessage.web_order_processed_successfully())
+            self._data = data
 
     def get_data(self):
         """
