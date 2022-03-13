@@ -53,8 +53,7 @@ class Order:
         except InvalidDataError as e:
 
             self._order_success = False
-            self._warning_message = ("Order {}, Could not process order data was corrupted,"
-                                     " InvalidDataError " + e.message).format(self._order_num)
+            self._warning_message = ("InvalidDataError " + e.message).format(self._order_num)
             self._item = None
 
         else:
@@ -122,5 +121,8 @@ class Order:
             self._order_num, self._item_name, self._item_type, "success" if self._order_success else "failed")
 
     def __str__(self):
-        return f'Order {self._order_num}, Item {self._item_type.title()}, Product ID {self.get_id().title()}, ' \
-               f'Name "{self._item_name.title()}", Quantity {self.get_quantity()}'
+        if self._order_success:
+            return f'Order {self._order_num}, Item {self._item_type.title()}, Product ID {self.get_id().title()}, ' \
+                   f'Name "{self._item_name.title()}", Quantity {self.get_quantity()}'
+        else:
+            return f'Order {self._order_num}, Could not process order data was corrupted, {self._warning_message}'

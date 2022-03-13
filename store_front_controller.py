@@ -17,7 +17,9 @@ class StoreFrontController:
         """
         for order in orders:
             if not order.order_success:
-                continue
+                self.store.append_order(order)
+                return
+
             if self.store.inventory.check_stock(order):
                 self.store.inventory.fulfill_order(order)
                 self.store.append_order(order)

@@ -28,6 +28,8 @@ class OrderProcessor:
             print(UIMessage.file_not_found_message())
         except ValueError:
             print(UIMessage.file_invalid_excel_message())
+        except Exception:
+            print("Sometimes wrong happens while importing the order, please try again!")
         else:
             print(UIMessage.web_order_processed_successfully())
             self._data = data
